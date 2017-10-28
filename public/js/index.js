@@ -3,10 +3,10 @@ var incomingMessage;
 socket.on('connect',function (){
     console.log('connected to server');
 
-    socket.emit('createMessage', {
-        from:'Henry',
-        message:'hey there'
-    })
+    // socket.emit('createMessage', {
+    //     from:'Henry',
+    //     text:'hey there'
+    // })
 
 });
 
@@ -17,7 +17,10 @@ socket.on('disconnect', function (){
 socket.on('newMessage', function(message){
 
     incomingMessage = document.createElement("P");    
-    incomingMessage.innerHTML = message.message;
+    incomingMessage.innerHTML = message.from + ":" + message.text;
+    incomingMessage.style.backgroundColor = 'grey';
+    incomingMessage.style.padding = '10px';
+    incomingMessage.style.width = '200px';
     document.body.appendChild(incomingMessage);
     console.log('new message:', message);
 })
